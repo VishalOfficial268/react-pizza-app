@@ -1,10 +1,9 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Product from '../components/Product';
-import { CartContext } from '../CartContext';
+// import { CartContext } from '../CartContext';
 
 const Products = () => {
-    const { cart } = useContext(CartContext);
-    console.log(cart)
+    // const { cart } = useContext(CartContext);
     const [products, setProducts] = useState([]);
     useEffect(() => {
         fetch('https://ecom-rest-apis.herokuapp.com/api/products')

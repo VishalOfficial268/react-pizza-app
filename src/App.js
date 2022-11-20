@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import { getCart, storeCart } from './helpers';
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Products from "./pages/Products";
@@ -9,12 +10,13 @@ import Navigation from "./components/Navigation"
 const App = () => {
   const [cart, setCart] = useState({});
   useEffect(() => {
-    const cart = window.localStorage.getItem('cart');
-    setCart(JSON.parse(cart))
+    getCart().then(cart => {
+      setCart(JSON.parse(cart));
+    })
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem('cart', JSON.stringify(cart));
+    storeCart(JSON.stringify(cart));
   }, [cart])
 
   return (
